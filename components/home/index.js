@@ -1,10 +1,15 @@
 import React from 'react';
 
 let Home = React.createClass({
+
+	handleClick : function () {
+		alert('Clientside clicked');
+	},
+
   render () {
     return (
       <div>
-        <h2>My Homepage</h2>
+        <h2 onClick={this.handleClick}>My Homepage</h2>
       </div>
     );
   }
