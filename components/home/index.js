@@ -1,4 +1,6 @@
 import React from 'react';
+import GlobalHeader from '../shared/header/';
+import HeroNav from '../hero-navigation/';
 
 let Home = React.createClass({
 
@@ -13,6 +15,8 @@ let Home = React.createClass({
   render () {
     return (
       <div>
+        <GlobalHeader/>
+        <HeroNav/>
         <h2 onClick={this.handleClick}>{this.props.cursor.cursor('header').get('title')}</h2>
       </div>
     );
