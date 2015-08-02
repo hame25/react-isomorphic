@@ -29,8 +29,8 @@ export default () => {
     };
 
     Router.run(routes, url, Handler => {
-
       templateLocals.content = React.renderToString(
+        
         <Handler cursor={cursor}/>
       );
 
