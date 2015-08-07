@@ -3,19 +3,19 @@ import GlobalHeader from '../shared/header/';
 import HeroNav from '../hero-navigation/';
 import Router from 'react-router';
 import fetch from 'isomorphic-fetch';
+import config from 'config';
+import url from 'url';
 
 let Link = Router.Link;
 
 let Home = React.createClass({
 
   statics: {
-    fetchData: function(params, query) {
-      //move to config
-      return fetch('http://localhost:1981/taxonomy')
+    fetchData: function() {
+      return fetch(url.format(config.get('services.taxonomy')))
       .then(function(response) {
           return response.json();
       }).then(function(taxonomy) {
-          console.log(taxonomy)
           return(taxonomy);
       });
     }
