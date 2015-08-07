@@ -8,9 +8,11 @@ let Route = Router.Route;
 let DefaultRoute = Router.DefaultRoute;
 
 let routes = (
-	<Route path="/" name="home" handler={App}>
-    	<DefaultRoute handler={Home}/>
+	<Route path="/" name="app" handler={App}>
+    	<DefaultRoute name="home" handler={Home}/>
     	<Route name="page-2" handler={PageTwo}/>
+    	<Route name="page-3" handler={PageTwo}/>
+    	<Route name="page-4" handler={PageTwo}/>
   	</Route>
 )
 

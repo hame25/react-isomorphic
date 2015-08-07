@@ -4,37 +4,42 @@ import React from 'react';
 import Router from 'react-router';
 import routes from '../routes'
 import Immutable from 'immutable';
-import Cursor from 'immutable/contrib/cursor'
-
+import Cursor from 'immutable/contrib/cursor';
+import fetchData from '../utils/fetchData';
 
 let layoutPath = joinPath(__dirname, 'layout.jade');
 let layout = compileFile(layoutPath);
 
 export default () => {
   return (req, res) => {
-    let url = req.url;
-    let data = {
-      header: {
-        title: 'My title'
-      }
-    };
 
-    data = Immutable.fromJS(data);
+    let router = Router.create({
+      routes: routes,
+      location: req.url
+    });
 
-    //create cursor
-    let cursor = Cursor.from(data);
+    let data;
 
-    let templateLocals = {
-      "data": data
-    };
+    router.run((Handler, state) => {
 
-    Router.run(routes, url, Handler => {
-      templateLocals.content = React.renderToString(
-        
-        <Handler cursor={cursor}/>
-      );
+        fetchData(state).then((data) => {
 
-      res.send(layout(templateLocals));
+          data.header = {title: 'inital title'};
+  
+          data = Immutable.fromJS(data);
+          
+          let cursor = Cursor.from(data);
+
+          let templateLocals = {
+            "data": data
+          };
+          
+          templateLocals.content = React.renderToString(
+          
+            <Handler cursor={cursor}/>
+          );
+          res.send(layout(templateLocals));
+        });
     });
   }
 }
