@@ -24,7 +24,9 @@ export default () => {
 
         fetchData(state).then((data) => {
 
+          //initial data setup
           data.header = {title: 'inital title'};
+          data.search = {query: ''};
   
           data = Immutable.fromJS(data);
           

@@ -1,0 +1,15 @@
+let config = {
+  "host": "0.0.0.0",
+  "port": 1982,
+
+  "services": {
+  	"taxonomy" : {
+  		"protocol": "http",
+  		"hostname": "0.0.0.0",
+  		"port": 1981,
+  		"pathname": "/taxonomy"
+  	}
+  }
+}
+
+export default config;

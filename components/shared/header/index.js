@@ -6,7 +6,7 @@ let GlobalHeader = React.createClass({
   render () {
     return (
       <div id="global-header">
-        <Search />
+        <Search cursor={this.props.cursor}/>
       </div>
     );
   }
