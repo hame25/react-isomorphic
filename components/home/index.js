@@ -7,10 +7,14 @@ require('es6-promise').polyfill();
 //import config from 'config';
 import config from '../../config';
 import url from 'url';
+import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
 
 let Link = Router.Link;
 
 let Home = React.createClass({
+
+  displayName: 'Home',
+  mixins: [shouldComponentUpdate],
 
   statics: {
     fetchData: function() {

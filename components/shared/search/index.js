@@ -1,10 +1,19 @@
 import React from 'react';
+import shouldComponentUpdate from '../../mixins/shouldComponentUpdate';
 
 let Search = React.createClass({
 
+  displayName: 'Search',
+  mixins: [shouldComponentUpdate],
+
   onSubmit: function (e) {
   	e.preventDefault();
-  	alert('submit button clicked');
+
+  	let query = this.props.cursor.get('query');
+
+  	if(query === '') {
+  		alert('Empty search!!!!')
+  	}
   },
 
   onChange: function (e) {
@@ -15,13 +24,7 @@ let Search = React.createClass({
     });
   },
 
-  shouldComponentUpdate: function () {
-   	  console.log('should component update');
-      return true;
-   },
-
   render () {
-  	console.log('*** re-render  search ***')
 
     return (
       <div id="global-search">

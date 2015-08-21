@@ -1,7 +1,11 @@
 import React from 'react';
 import NavItem from './nav-item.js';
+import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
 
 let HeroNav = React.createClass({
+
+  displayName: 'HeroNav',
+  mixins: [shouldComponentUpdate],
 
   render () {
     let taxonomy = this.props.cursor.get('taxonomy').deref();
