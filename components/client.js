@@ -5,33 +5,25 @@ import Immutable from 'immutable';
 import Cursor from 'immutable/contrib/cursor'
 import routes from '../routes';
 
-function clientBootstrap () {
-	this.content = document.getElementById('content');
+let content = document.getElementById('content');
+let data = JSON.parse(document.getElementById('initial-data').innerHTML);
+data = Immutable.fromJS(data);
 
-	// Create application centralised data - include this when we have some app data
-	let data = JSON.parse(document.getElementById('initial-data').innerHTML);
 
-	this.data = Immutable.fromJS(data);
-
-	//create cursor
-	this.cursor = Cursor.from(this.data, this.onChange.bind(this));
-
-	this.render();
-}
-
-clientBootstrap.prototype.onChange = function (newData) {
-	this.data = newData
-	this.cursor = Cursor.from(this.data, this.onChange.bind(this));
-	this.render();
-}
 
 // Start the client-side router using only `pushState`
 // with the supplied routes
-clientBootstrap.prototype.render = function () {
-	let self = this;
-	Router.run(routes, Router.HistoryLocation, function (Handler, req) {
-    	React.render(<Handler cursor = {self.cursor}/>, self.content);
-	});
-} 
+Router.run(routes, Router.HistoryLocation, function (Handler, req) {
+	let cursor = Cursor.from(data, onCursorChange);
 
-new clientBootstrap();
+	function onCursorChange (newData) {
+		cursor = Cursor.from(newData, onCursorChange);
+		render();
+	}
+
+	function render () {
+		React.render(<Handler cursor = {cursor}/>, self.content);
+	}
+
+	render();
+});

@@ -4,8 +4,7 @@ let Search = React.createClass({
 
   onSubmit: function (e) {
   	e.preventDefault();
-
-  	alert('search clicked');
+  	alert('submit button clicked');
   },
 
   onChange: function (e) {
@@ -16,6 +15,11 @@ let Search = React.createClass({
     });
   },
 
+  shouldComponentUpdate: function () {
+   	  console.log('should component update');
+      return true;
+   },
+
   render () {
   	console.log('*** re-render  search ***')
 
@@ -23,12 +27,13 @@ let Search = React.createClass({
       <div id="global-search">
       	<form>
       		<label>Search</label>
-      		<input type="input" placeholder="I'm looking for" onChange={this.onChange} defaultValue={this.props.cursor.get('query')} key="search-box"/>
+      		<input type="input" placeholder="I'm looking for" onChange={this.onChange} defaultValue={this.props.cursor.get('query')} ref="searchBox"/>
       		<button type="submit" name="submit-search" onClick={this.onSubmit}>Search</button>
       	</form>
       </div>	
     );
-  }
+  },
+
 });
 
 export default Search;
