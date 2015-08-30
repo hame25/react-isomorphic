@@ -5,10 +5,15 @@ let config = {
   "services": {
   	"taxonomy" : {
   		"protocol": "http",
-  		"hostname": "0.0.0.0",
+  		"hostname": "localhost",
   		"port": 1981,
   		"pathname": "/taxonomy"
-  	}
+  	}, "plp" : {
+      "protocol": "http",
+      "hostname": "localhost",
+      "port": 1981,
+      "pathname": "/plp"
+    }
   }
 }
 

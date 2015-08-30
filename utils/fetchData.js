@@ -1,6 +1,6 @@
 import { all as all } from 'when/keys';
 
-let fetchData = module.exports = (routerState) => {
+let fetchData = module.exports = (routerState, cursor) => {
 
   let { params, query } = routerState;
 
@@ -10,7 +10,7 @@ let fetchData = module.exports = (routerState) => {
 
   }).reduce((promises, route) => {
 
-    promises[route.name] = route.handler.fetchData(params, query);
+    promises[route.name] = route.handler.fetchData(cursor);
     return promises;
 
   }, {}));

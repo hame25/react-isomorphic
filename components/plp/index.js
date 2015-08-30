@@ -1,6 +1,5 @@
 import React from 'react';
 import GlobalHeader from '../shared/header/';
-import HeroNav from '../hero-navigation/';
 import Router from 'react-router';
 import fetch from 'isomorphic-fetch';
 require('es6-promise').polyfill();
@@ -8,43 +7,37 @@ require('es6-promise').polyfill();
 import config from '../../config';
 import url from 'url';
 import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
+import ProductList from './product-list';
 
 let Link = Router.Link;
 
-let Home = React.createClass({
+let plp = React.createClass({
 
-  displayName: 'Home',
+  displayName: 'PLP',
   mixins: [shouldComponentUpdate],
 
   statics: {
     fetchData: function() {
-      return fetch(url.format(config.services.taxonomy))
+      return fetch(url.format(config.services.plp))
       .then(function(response) {
           return response.json();
-      }).then(function(taxonomy) {
-          return(taxonomy);
+      }).then(function(productData) {
+          return(productData);
       });
     }
   },
 
-	handleClick : function () {
-		alert('Clientside clicked');
-    //update
-    this.props.cursor.cursor('header').update('title', function () {
-      return 'new title updated!!!';
-    });
-	},
-
   render () {
+
     return (
       <div>
         <GlobalHeader cursor={this.props.cursor.cursor('search')}/>
-        <HeroNav cursor={this.props.cursor.cursor('home')}/>
-        <h2 onClick={this.handleClick}>{this.props.cursor.cursor('header').get('title')}</h2>
-        <Link to="plp">Page 2</Link>
+        <div className='plp-page'>
+          <ProductList cursor={this.props.cursor.cursor('plp')}/>
+        </div>
       </div>
     );
   }
 });
 
-export default Home;
+export default plp;

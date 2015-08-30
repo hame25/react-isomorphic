@@ -29,6 +29,8 @@ export default () => {
           data.search = {query: ''};
   
           data = Immutable.fromJS(data);
+
+          console.log(data);
           
           let cursor = Cursor.from(data);
 
