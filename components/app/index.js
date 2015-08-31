@@ -1,8 +1,7 @@
 import React from 'react';
 import {RouteHandler as RouteHandler} from 'react-router';
 
-let App = React.createClass({
-
+class App extends React.Component {
   render () {
 
     return (
@@ -16,6 +15,6 @@ let App = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default App;
