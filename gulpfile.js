@@ -26,6 +26,11 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task('default', ['webpack'], function () {
+
+gulp.task('build-dev', ['webpack'], function() {
+    gulp.watch(["./components/**/*"], ['webpack']);
+});
+
+gulp.task('default', ['build-dev'], function () {
 
 });
