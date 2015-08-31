@@ -8,8 +8,7 @@ let ProductList = React.createClass({
   mixins: [shouldComponentUpdate],
 
   render () {
-    
-    let products = this.props.cursor.get('products').deref();
+    let products = this.props.products.deref();
 
     return (
       	<ul>

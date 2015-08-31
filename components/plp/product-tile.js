@@ -7,9 +7,14 @@ let ProductTile = React.createClass({
   mixins: [shouldComponentUpdate],
 
   render () {
+    let item = this.props.item;
 
     return (
-      	<li>{this.props.item.get('name')}</li>
+      	<li>
+          <h3>{item.get('name')}</h3>
+          <img src={item.get('image').get('url')} />
+          <p className='price'>£{item.get('price')}</p>
+        </li>
     );
   }
 });
