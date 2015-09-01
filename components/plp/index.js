@@ -33,7 +33,7 @@ let plp = React.createClass({
       <div>
         <GlobalHeader cursor={this.props.cursor.cursor('search')}/>
         <div className='plp-page'>
-          <ProductList products={this.props.cursor.cursor('plp').get('products')}/>
+          <ProductList cursor={this.props.cursor.cursor('plp').get('products')}/>
         </div>
       </div>
     );

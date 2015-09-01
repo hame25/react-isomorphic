@@ -22,7 +22,7 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 		//only update if data is different
 		if(newData.equals(data) === false) {
 			console.log('different!!!!!')
-			console.log(newData.toJS());
+			//console.log(newData.toJS());
 			data = newData;
 			cursor = Cursor.from(data, onCursorChange);
 			render();
