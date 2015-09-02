@@ -11,8 +11,6 @@ let initialData = JSON.parse(document.getElementById('initial-data').innerHTML);
 let data = Immutable.fromJS(initialData);
 let cursor;
 
-
-
 // Start the client-side router using only `pushState`
 // with the supplied routes
 Router.run(routes, Router.HistoryLocation, function (Handler, req) {
@@ -20,13 +18,13 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 	function onCursorChange (newData) {
 
 		//only update if data is different
-		if(newData.equals(data) === false) {
-			console.log('different!!!!!')
+		//if(newData.equals(data) === false) {
+			//console.log('different!!!!!')
 			//console.log(newData.toJS());
 			data = newData;
 			cursor = Cursor.from(data, onCursorChange);
 			render();
-		}
+		//}
 	}
 
 	function isEmpty(obj) {
@@ -45,10 +43,11 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 				let objData = Immutable.fromJS(data[objKey]);
 
 				/** REVIEW THIS LATER ***/
-				/*cursor.update(objKey, function () {
+				cursor.update(objKey, function () {
       				return objData;
-    			});*/
-				cursor.set('plp', objData);
+    			});
+				/*cursor.set('plp', objData);*/
+				//render();
 			
           }).catch(() => {
               //window.location = `/500.html`;
