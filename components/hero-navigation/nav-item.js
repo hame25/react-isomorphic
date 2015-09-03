@@ -1,6 +1,7 @@
 import React from 'react';
+import Base from '../base';
 
-let NavItem = React.createClass({
+class NavItem extends Base {
 
   render () {
     let item = this.props.item;
@@ -12,6 +13,6 @@ let NavItem = React.createClass({
       </li>
     );
   }
-});
+}
 
 export default NavItem;

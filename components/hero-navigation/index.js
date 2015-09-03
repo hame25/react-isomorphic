@@ -1,11 +1,13 @@
 import React from 'react';
 import NavItem from './nav-item.js';
-import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
+import Base from '../base';
 
-let HeroNav = React.createClass({
+class HeroNav extends Base {
 
-  displayName: 'HeroNav',
-  mixins: [shouldComponentUpdate],
+  constructor () {
+    super();
+    this.displayName = 'HeroNav';
+  }
 
   render () {
     let taxonomy = this.props.cursor.get('taxonomy').deref();
@@ -13,14 +15,14 @@ let HeroNav = React.createClass({
     return (
       <div id="hero-nav">
         <h2>Shop by department</h2>
-      	<ul>
+        <ul>
         {taxonomy.map((item, i) => 
           <NavItem key={i} item={item}/>
         )}
         </ul>
-      </div>	
+      </div>  
     );
   }
-});
+}
 
 export default HeroNav;

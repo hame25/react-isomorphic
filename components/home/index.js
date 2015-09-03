@@ -7,44 +7,44 @@ require('es6-promise').polyfill();
 //import config from 'config';
 import config from '../../config';
 import url from 'url';
-import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
+import Base from '../base';
 
 let Link = Router.Link;
 
-let Home = React.createClass({
+class Home extends Base {
 
-  displayName: 'Home',
-  mixins: [shouldComponentUpdate],
+  constructor () {
+    super();
+    this.displayName = 'Home';
+  }
 
-  statics: {
-    fetchData: function() {
-      return fetch(url.format(config.services.taxonomy))
-      .then(function(response) {
-          return response.json();
-      }).then(function(taxonomy) {
-          return(taxonomy);
-      });
-    }
-  },
-
-	handleClick : function () {
-		alert('Clientside clicked');
+  handleClick () {
+    alert('Clientside clicked');
     //update
     this.props.cursor.cursor('header').update('title', function () {
       return 'new title updated!!!';
     });
-	},
+  }
 
   render () {
     return (
       <div>
         <GlobalHeader cursor={this.props.cursor.cursor('search')}/>
         <HeroNav cursor={this.props.cursor.cursor('home')}/>
-        <h2 onClick={this.handleClick}>{this.props.cursor.cursor('header').get('title')}</h2>
+        <h2 onClick={this.handleClick.bind(this)}>{this.props.cursor.cursor('header').get('title')}</h2>
         <Link to="plp">Page 2</Link>
       </div>
     );
   }
-});
+}
+
+Home.fetchData = function () {
+  return fetch(url.format(config.services.taxonomy))
+    .then(function(response) {
+      return response.json();
+    }).then(function(taxonomy) {
+      return(taxonomy);
+    });
+}
 
 export default Home;
