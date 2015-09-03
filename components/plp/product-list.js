@@ -1,23 +1,25 @@
 import React from 'react';
 import ProductTile from './product-tile.js';
-import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
+import Base from '../base';
 
-let ProductList = React.createClass({
+class ProductList extends Base {
 
-  displayName: 'ProductList',
-  mixins: [shouldComponentUpdate],
+  constructor () {
+    super();
+    this.displayName = 'ProductList';
+  }
 
   render () {
     let products = this.props.cursor.deref();
 
     return (
-      	<ul>
+        <ul>
         {products.map((item, i) => 
           <ProductTile key={i} item={item}/>
         )}
         </ul>
     );
   }
-});
+}
 
 export default ProductList;

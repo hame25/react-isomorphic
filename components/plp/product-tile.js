@@ -1,5 +1,4 @@
 import React from 'react';
-import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
 import Base from '../base';
 
 class ProductTile extends Base {

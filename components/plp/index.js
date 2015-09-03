@@ -6,26 +6,18 @@ require('es6-promise').polyfill();
 //import config from 'config';
 import config from '../../config';
 import url from 'url';
-import shouldComponentUpdate from '../mixins/shouldComponentUpdate';
+import Base from '../base';
 import ProductList from './product-list';
 
 let Link = Router.Link;
 
-let plp = React.createClass({
 
-  displayName: 'PLP',
-  mixins: [shouldComponentUpdate],
+class plp extends Base {
 
-  statics: {
-    fetchData: function() {
-      return fetch(url.format(config.services.plp))
-      .then(function(response) {
-          return response.json();
-      }).then(function(productData) {
-          return(productData);
-      });
-    }
-  },
+  constructor () {
+    super();
+    this.displayName = 'PLP';
+  }
 
   render () {
 
@@ -38,6 +30,15 @@ let plp = React.createClass({
       </div>
     );
   }
-});
+}
+
+plp.fetchData = function(){
+  return fetch(url.format(config.services.plp))
+    .then(function(response) {
+      return response.json();
+    }).then(function(productData) {
+      return(productData);
+  });
+}
 
 export default plp;
