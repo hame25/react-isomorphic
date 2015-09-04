@@ -1,7 +1,13 @@
 import React from 'react';
 import Search from '../search/'
+import Base from '../../base';
 
-let GlobalHeader = React.createClass({
+class GlobalHeader extends Base {
+
+  constructor () {
+    super();
+    this.displayName = 'GlobalHeader';
+  }
 
   render () {
     return (
@@ -10,6 +16,6 @@ let GlobalHeader = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default GlobalHeader;
