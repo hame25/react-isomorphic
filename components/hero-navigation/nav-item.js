@@ -3,6 +3,11 @@ import Base from '../base';
 
 class NavItem extends Base {
 
+  constructor () {
+    super();
+    this.displayName = 'NavItem';
+  }
+
   render () {
     let item = this.props.item;
     return (

@@ -23,7 +23,6 @@ class plp extends Base {
 
     return (
       <div>
-        <GlobalHeader cursor={this.props.cursor.cursor('search')}/>
         <div className='plp-page'>
           <ProductList cursor={this.props.cursor.cursor('plp').get('products')}/>
         </div>
