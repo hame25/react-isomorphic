@@ -6,6 +6,9 @@ import routes from '../routes'
 import Immutable from 'immutable';
 import Cursor from 'immutable/contrib/cursor';
 import fetchData from '../utils/fetchData';
+import config from '../config';
+import fetch from 'isomorphic-fetch';
+import url from 'url';
 
 let layoutPath = joinPath(__dirname, 'layout.jade');
 let layout = compileFile(layoutPath);
@@ -23,27 +26,39 @@ export default () => {
     router.run((Handler, state) => {
 
         fetchData(state).then((data) => {
-
           //initial data setup
           data.header = {title: 'inital title'};
           data.search = {query: ''};
-  
-          data = Immutable.fromJS(data);
+          return data;
+        }).then((data) => {
+          getGlobalData().then((appData) => {
 
-          console.log(data);
+            data.app = appData;
+            data = Immutable.fromJS(data);
           
-          let cursor = Cursor.from(data);
+            let cursor = Cursor.from(data);
 
-          let templateLocals = {
-            "data": data
-          };
+            let templateLocals = {
+              "data": data
+            };
           
-          templateLocals.content = React.renderToString(
+            templateLocals.content = React.renderToString(
           
             <Handler cursor={cursor}/>
           );
           res.send(layout(templateLocals));
         });
+      })
     });
   }
+}
+
+function getGlobalData() {
+  console.log(url.format(config.services.taxonomy))
+  return fetch(url.format(config.services.taxonomy))
+    .then(function(response) {
+      return response.json();
+    }).then(function(taxonomy) {
+      return taxonomy;
+    });
 }

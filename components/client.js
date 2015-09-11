@@ -16,15 +16,9 @@ let cursor;
 Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 
 	function onCursorChange (newData) {
-
-		//only update if data is different
-		//if(newData.equals(data) === false) {
-			//console.log('different!!!!!')
-			//console.log(newData.toJS());
-			data = newData;
-			cursor = Cursor.from(data, onCursorChange);
-			render();
-		//}
+		data = newData;
+		cursor = Cursor.from(data, onCursorChange);
+		render();
 	}
 
 	function isEmpty(obj) {
@@ -46,13 +40,11 @@ Router.run(routes, Router.HistoryLocation, function (Handler, req) {
 				cursor.update(objKey, function () {
       				return objData;
     			});
-				/*cursor.set('plp', objData);*/
-				//render();
 			
-          }).catch(() => {
+          });//.catch(() => {
               //window.location = `/500.html`;
-              console.log('error');
-          });
+              //console.log('error');
+          //});
 		}  else {
 			cursor = Cursor.from(data, onCursorChange);
 			//console.log('INITIAL CURSOR');

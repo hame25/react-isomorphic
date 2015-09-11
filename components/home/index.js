@@ -29,7 +29,7 @@ class Home extends Base {
   render () {
     return (
       <div>
-        <HeroNav cursor={this.props.cursor.cursor('home')}/>
+        <HeroNav cursor={this.props.cursor.cursor('app')}/>
         <h2 onClick={this.handleClick.bind(this)}>{this.props.cursor.cursor('header').get('title')}</h2>
         <Link to="plp">Page 2</Link>
       </div>
@@ -42,8 +42,7 @@ Home.fetchData = function () {
     .then(function(response) {
       return response.json();
     }).then(function(taxonomy) {
-      //return({test: 'my test'});
-      return(taxonomy);
+      return({test: 'my test'});
     });
 }
 
