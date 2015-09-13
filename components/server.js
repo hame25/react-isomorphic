@@ -26,11 +26,10 @@ export default () => {
     router.run((Handler, state) => {
 
         fetchData(state).then((data) => {
-          //initial data setup
-          data.header = {title: 'inital title'};
-          data.search = {query: ''};
+          //page specific data
           return data;
         }).then((data) => {
+          //global data
           getGlobalData().then((appData) => {
 
             data.app = appData;
@@ -54,11 +53,11 @@ export default () => {
 }
 
 function getGlobalData() {
-  console.log(url.format(config.services.taxonomy))
   return fetch(url.format(config.services.taxonomy))
     .then(function(response) {
       return response.json();
-    }).then(function(taxonomy) {
-      return taxonomy;
+    }).then(function(data) {
+      data.search = {query: 'placeholder'};
+      return data;
     });
 }

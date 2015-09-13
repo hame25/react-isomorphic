@@ -21,7 +21,7 @@ class Home extends Base {
   handleClick () {
     alert('Clientside clicked');
     //update
-    this.props.cursor.cursor('header').update('title', function () {
+    this.props.cursor.cursor('home').update('title', function () {
       return 'new title updated!!!';
     });
   }
@@ -30,7 +30,7 @@ class Home extends Base {
     return (
       <div>
         <HeroNav cursor={this.props.cursor.cursor('app')}/>
-        <h2 onClick={this.handleClick.bind(this)}>{this.props.cursor.cursor('header').get('title')}</h2>
+        <h2 onClick={this.handleClick.bind(this)}>{this.props.cursor.cursor('home').get('title')}</h2>
         <Link to="plp">Page 2</Link>
       </div>
     );
@@ -38,12 +38,7 @@ class Home extends Base {
 }
 
 Home.fetchData = function () {
-  return fetch(url.format(config.services.taxonomy))
-    .then(function(response) {
-      return response.json();
-    }).then(function(taxonomy) {
-      return({test: 'my test'});
-    });
+  return ({title: 'Hello world'});
 }
 
 export default Home;

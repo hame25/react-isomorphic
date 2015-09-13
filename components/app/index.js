@@ -20,7 +20,7 @@ class App extends Base {
     return (
       <div>
         <header>
-          <GlobalHeader cursor={this.props.cursor.cursor('search')}/>
+          <GlobalHeader cursor={this.props.cursor.cursor(['app', 'search'])}/>
         </header>
         <section>
           {/* Render Main Content */}
@@ -30,14 +30,5 @@ class App extends Base {
     );
   }
 }
-
-/*App.fetchData = function () {
-  return fetch(url.format(config.services.taxonomy))
-    .then(function(response) {
-      return response.json();
-    }).then(function(taxonomy) {
-      return(taxonomy);
-    });
-}*/
 
 export default App;
