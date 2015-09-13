@@ -29,7 +29,7 @@ class Home extends Base {
   render () {
     return (
       <div>
-        <HeroNav cursor={this.props.cursor.cursor('app')}/>
+        <HeroNav cursor={this.props.cursor.cursor(['app', 'taxonomy'])}/>
         <h2 onClick={this.handleClick.bind(this)}>{this.props.cursor.cursor('home').get('title')}</h2>
         <Link to="plp">Page 2</Link>
       </div>
