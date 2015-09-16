@@ -8,15 +8,8 @@ class Base extends React.Component {
   shouldComponentUpdate (nextProps, nextState) {
       console.log('Rerender ' + this.displayName + '?')
       if(nextProps.cursor !== undefined && (nextProps.cursor.deref() !== this.props.cursor.deref())) {
-      //if(nextProps.cursor && (nextProps.cursor.deref() !== this.props.cursor.deref())) {
-
-        console.log('*** Render ' + this.displayName + ' ***');
+        console.log('*** Render ' + this.displayName + ' cursor ***');
         return true
-      }
-
-      if(shallowEqual(this.props, nextProps) ||!shallowEqual(this.state, nextState)){
-        console.log('*** Render ' + this.displayName + ' ***');
-        return true;
       }
 
       return false;
