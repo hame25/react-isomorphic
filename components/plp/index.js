@@ -20,11 +20,10 @@ class plp extends Base {
   }
 
   render () {
-
     return (
       <div>
         <div className='plp-page'>
-          <ProductList cursor={this.props.cursor.cursor('plp').get('products')}/>
+          <ProductList cursor={this.props.cursor.cursor(['plp', 'products'])}/>
         </div>
       </div>
     );

@@ -10,12 +10,12 @@ class ProductList extends Base {
   }
 
   render () {
-    let products = this.props.cursor.deref();
+    let products = this.props.cursor;
 
     return (
         <ul>
         {products.map((item, i) => 
-          <ProductTile key={i} item={item}/>
+          <ProductTile key={i} cursor={item}/>
         )}
         </ul>
     );
